@@ -1,0 +1,24 @@
+.tendency .map_info {
+  height: 440px;
+}
+.tendency .map_tab {
+  display: flex;
+  margin: 0 20px;
+}
+.tendency .map_tab .map_tabItem {
+  margin: 0 25px;
+  padding: 10px 0;
+  background: #ccc;
+  font-size: 13px;
+  flex: 1;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+.tendency .map_tab .map_tabItem:hover {
+  background: blue;
+  color: white;
+}
+.tendency .map_tab .map_tabItem:active {
+  background: blue;
+  color: white;
+}
