@@ -1,10 +1,16 @@
-import './App.less'
-import Map from './pages/Map'
-import Trend from './pages/Trend'
-import EpidemicChange from './pages/EpidemicChange';
-import TopTen from './pages/TopTen'
-import React, { useState, useEffect } from 'react'
+
+import React, { useState, useEffect } from 'react';
+import News from './pages/News'
 import axios from 'axios'
+// import Map from './pages/Map'
+import PageChinaMap from './pages/PageChinaMap'
+// import Trend from './pages/Trend'
+import TrendChina from './pages/TrendChina'
+
+import EpidemicChange from './pages/EpidemicChange';
+// import TopTen from './pages/TopTen'
+import styles from './App.less';
+
 const App = (props) => {
   
   const [foreignData, setForeignData] = useState(null)
@@ -38,21 +44,27 @@ const App = (props) => {
     //   }
     // }
     // request2.send()
-    axios.get('/covid/news').then((res) => {
-      
-    })
+
   }, [])
 
   return (
-    <div className='container'>
-      <Map foreignData={foreignData} chinaData={chinaData} />
+    <div className="container">
+      {/* <Map foreignData={foreignData} chinaData={chinaData} /> */}
+      
+      <PageChinaMap className={styles.page_china_map} foreignData={foreignData} chinaData={chinaData} />
 
       
-      <Trend foreignData={foreignData} chinaData={chinaData} />
-      <EpidemicChange />
+      {/* <Trend foreignData={foreignData} chinaData={chinaData} /> */}
+
+      <TrendChina className={styles.trend_china} foreignData={foreignData} chinaData={chinaData} />
+
+      <EpidemicChange className={styles.epidemic_change} />
 
 
-      {foreignData && chinaData ? <TopTen foreignData={foreignData} chinaData={chinaData} /> : null}
+
+      {/* {foreignData && chinaData ? <TopTen foreignData={foreignData} chinaData={chinaData} /> : null} */}
+      
+      <News className={styles.news}/>
     </div>
   )
 }

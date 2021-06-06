@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../../styles/Map/Number.less'
 const Number = (props) => {
   const { foreignData } = props
-  console.log(foreignData)
+  //  console.log('Number/foreignData<<\n', foreignData)
   return (
     <div className='brief_body'>
       <div className='number'>

@@ -1,8 +1,11 @@
 .container {
-  width: 1050px;
+  width: 960px;
   margin: 20px auto;
   padding: 20px 0;
   text-align: center;
-  background-color: #fff;
+  background-color: #eee3e3;
   border-radius: 15px;
+}
+.container .news {
+  margin: auto 64px ;
 }

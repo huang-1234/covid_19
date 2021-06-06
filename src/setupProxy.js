@@ -42,4 +42,16 @@ app.use("自定义url".proxy({  }))
       cookieDomainRewrite: 'https://lab.isaaclin.cn/nCoV/api/news',
     })
   )
+  // app.use(
+  //   '/covid_data',
+  //   proxy.createProxyMiddleware({
+  //     target: 'https://www.maomin.club/fy/get',
+  //     secure: true,
+  //     changeOrigin: true,
+  //     pathRewrite: {
+  //       '^/covid/news': '',
+  //     },
+  //     cookieDomainRewrite: 'https://www.maomin.club/fy/get',
+  //   })
+  // )
 }

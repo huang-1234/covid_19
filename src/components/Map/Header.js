@@ -6,8 +6,8 @@ const Header = (props) => {
   // console.log(typeof foreignData)
   return (
     <div className='brief_header'>
-      <h2>海外疫情</h2>
-      <p>更新时间 - {foreignData ? foreignData.globalStatis.lastUpdateTime : ''}</p>
+      <h2>Global Epidemic</h2>
+      <p>globalStatis.lastUpdateTime - {foreignData ? foreignData.globalStatis.lastUpdateTime : ''}</p>
     </div>
   )
 }

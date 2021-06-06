@@ -7,6 +7,8 @@ import '../../utils/world'
 const WorldMap = (props) => {
   const { chinaData, foreignData } = props
   const [number, setNumber] = useState(0);
+  // console.log('WorldMap/foreignData<<',foreignData);
+  // console.log('WorldMap/chinaData<<',chinaData);
 
   useEffect(() => {
     let virusDatas = []
@@ -40,6 +42,7 @@ const WorldMap = (props) => {
     const option = {
       tooltip: {
         trigger: 'item',
+        // triggerOn: "mousemove",
         formatter: function (params) {
           return params.name + ' : ' + (params.value ? params.value : 0)
         },

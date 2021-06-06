@@ -8,3 +8,9 @@ body {
 span {
   cursor: pointer;
 }
+a {
+  color:black;
+}
+a:hover{
+  color:blue;
+}
