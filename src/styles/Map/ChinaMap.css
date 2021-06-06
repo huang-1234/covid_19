@@ -1,0 +1,30 @@
+.map {
+  width: 100%;
+}
+.map .chinaMap {
+  width: 100%;
+  height: 450px;
+  margin: 0 0 0 10px;
+}
+.map .map_tab {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map .map_tab .cur {
+  margin: 0 30px;
+  padding: 10px 20px;
+  background: #ccc;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.map .map_tab .cur:hover {
+  background: blue;
+  color: white;
+}
+.map .map_tab .cur:active {
+  background: blue;
+  color: white;
+}
