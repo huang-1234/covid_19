@@ -1,5 +1,5 @@
 .container {
-  width: 960px;
+  width: 80vw;
   margin: 20px auto;
   padding: 20px 0;
   text-align: center;
@@ -7,5 +7,6 @@
   border-radius: 15px;
 }
 .container .news {
+  width: 80vw;
   margin: auto 64px ;
 }

@@ -1,0 +1,50 @@
+.brief_body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+.brief_body .number {
+  flex: 1;
+}
+.brief_body .number .number1 {
+  color: red;
+  font-size: 1rem;
+}
+.brief_body .number .number2 {
+  color: orange;
+  font-size: 1rem;
+}
+.brief_body .number .number3 {
+  font-size: 1rem;
+}
+.brief_body .number .number4 {
+  color: #00c7c7;
+  font-size: 1rem;
+}
+.brief_body .number .text {
+  background: #ccc;
+  margin: 0.3125rem 1.875rem;
+  padding: 8px 0.3125rem;
+  font-size: 0.75rem;
+  border-radius: 5px;
+}
+.brief_body .number .more1 {
+  color: red;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.brief_body .number .more2 {
+  color: orange;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.brief_body .number .more3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.brief_body .number .more4 {
+  color: #00c7c7;
+  font-size: 0.75rem;
+  font-weight: 600;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import '../../styles/Map/Number.less'
 const Number = (props) => {
   const { chinaData } = props 

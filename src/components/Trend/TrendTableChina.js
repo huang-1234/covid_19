@@ -7,7 +7,7 @@ const TrendTable = (props) => {
 
   useEffect(() => {
     const globalDailyHistory = foreignData.globalDailyHistory
-    console.log('globalDailyHistory<<', globalDailyHistory)
+    //  console.log('globalDailyHistory<<', globalDailyHistory) 
     const num = []
     const date = []
     for (let i = globalDailyHistory.length - 1; i >= 0; i--) {
@@ -15,7 +15,7 @@ const TrendTable = (props) => {
       if ((globalDailyHistory.length + 1 - i) % 3 === 0) {
         num.unshift(globalDailyHistory[i].all.newAddConfirm)
         date.unshift(globalDailyHistory[i].date)
-        console.log(globalDailyHistory[i])
+        // console.log(globalDailyHistory[i])
       }
     }
     // console.log(num ,date)
@@ -28,7 +28,7 @@ const TrendTable = (props) => {
     }
     const option = {
       title: {
-        text: '  海外新增确诊趋势',
+        text: '  全球新增确诊趋势图如下',
       },
       legend: {
         icon: 'rect',
@@ -256,7 +256,7 @@ const TrendTable = (props) => {
     }
     myChart.clear()
     myChart.setOption(option)
-  }, [foreignData.globalDailyHistory, trendNumber])
+  }, [chinaData, foreignData.globalDailyHistory, trendNumber])
   return (
     <div className='tendency'>
       <div className='map_info'></div>

@@ -2,13 +2,22 @@
   margin: 0;
   padding: 0;
 }
+html{
+  font-size:8px;
+}
 body {
+  width: 100vw;
   background: blue;
+}
+
+header{
+  font-size: 4rem; 
 }
 span {
   cursor: pointer;
 }
 a {
+  text-decoration:none;
   color:black;
 }
 a:hover{

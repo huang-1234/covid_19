@@ -50,7 +50,7 @@ const WorldMap = (props) => {
       visualMap: {
         type: 'piecewise',
         pieces: [
-          { max: 0, label: '0', color: '#eee' },
+          { min:0, max: 0, label: '0', color: '#2E8B57' },
           { min: 1, max: 499, label: '1-499', color: '#fff7ba' },
           { min: 500, max: 4999, label: '500-4999', color: '#ffc24b' },
           { min: 5000, max: 9999, label: '5000-9999', color: '#ff7c20' },
@@ -72,7 +72,7 @@ const WorldMap = (props) => {
           emphasis: {
             areaColor: '#c92fff',
             label: {
-              show: false,
+              show: true,
             },
           },
           layoutCenter: ['center', 'center'],

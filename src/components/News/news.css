@@ -1,11 +1,11 @@
 .news_box {
   width: 70vw;
-  display: inline-block;
-  margin: 4rem auto;
+  margin: 1rem auto;
 }
-.news_box header {
-  font-size: 2rem;
+.news_box header .news_time {
+  font-size: 1rem;
 }
 .news_box .news_header {
   font-size: 1.5rem;
+  color: blue;
 }

@@ -1,4 +1,10 @@
+
+@number_fontSize: 1rem;
+@margin_unit : .3125rem;
+@text_fontSize: .75rem;
+ @font600Weight:600;
 .brief_body {
+  
   display:flex;
   align-items:center;
   justify-content:center;
@@ -7,44 +13,44 @@
     flex:1;
     .number1 {
       color: red;
-      font-size: 25px;
+      font-size: @number_fontSize;
     }
     .number2 {
       color: orange;
-      font-size: 25px;
+      font-size: @number_fontSize;
     }
     .number3 {
-      font-size: 25px;
+      font-size: @number_fontSize;
     }
     .number4 {
       color: #00c7c7;
-      font-size: 25px;
+      font-size: @number_fontSize;
     }
     .text {
       background: #ccc;
-      margin: 5px 30px;
-      padding: 8px 5px;
-      font-size: 13px;
+      margin: @margin_unit 6*@margin_unit;
+      padding: 8px @margin_unit;
+      font-size: @text_fontSize;
       border-radius: 5px;
     }
     .more1 {
       color: red;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: @text_fontSize;
+      font-weight:  @font600Weight;
     }
     .more2 {
       color: orange;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: @text_fontSize;
+      font-weight:  @font600Weight;
     }
     .more3 {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: @text_fontSize;
+      font-weight:  @font600Weight;
     }
     .more4 {
       color: #00c7c7;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: @text_fontSize;
+      font-weight:  @font600Weight;
     }
   }
 }

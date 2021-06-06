@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import News from './pages/News'
 import axios from 'axios'
-// import Map from './pages/Map'
+import WorldMap from './pages/Map'
 import PageChinaMap from './pages/PageChinaMap'
 // import Trend from './pages/Trend'
 import TrendChina from './pages/TrendChina'
@@ -27,11 +27,11 @@ const App = (props) => {
     //   }
     // }
     // request.send()
-    axios.get('/foreign').then((res) => {
+    axios.get('/covid/foreign').then((res) => {
       setForeignData(JSON.parse(res.data.data))
     })
 
-    axios.get('/china').then((res) => {
+    axios.get('/covid/china').then((res) => {
       setChinaData(JSON.parse(res.data.data))
     })
     // let request2 = new XMLHttpRequest()
@@ -49,7 +49,7 @@ const App = (props) => {
 
   return (
     <div className="container">
-      {/* <Map foreignData={foreignData} chinaData={chinaData} /> */}
+      <WorldMap foreignData={foreignData} chinaData={chinaData} />
       
       <PageChinaMap className={styles.page_china_map} foreignData={foreignData} chinaData={chinaData} />
 
@@ -59,8 +59,6 @@ const App = (props) => {
       <TrendChina className={styles.trend_china} foreignData={foreignData} chinaData={chinaData} />
 
       <EpidemicChange className={styles.epidemic_change} />
-
-
 
       {/* {foreignData && chinaData ? <TopTen foreignData={foreignData} chinaData={chinaData} /> : null} */}
       

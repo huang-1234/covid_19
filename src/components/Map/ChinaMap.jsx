@@ -40,24 +40,52 @@ const ChinaMap = (props) => {
     } else {
       myChart = linearBarDom
     }
+    // sb = size_base  // sr = size_race
+    const sb = 20;
+    const sr1 = 5, sr2 = 25, sr3 = 125, sr4 = 625, sr5 = 3125, sr6 = 15625;
+    
+    const dss = { // dss = data_sizes
+      // mns = min_size ，  mxs = max_size
+      mns0: 1, mxs0: sb - 1,
+      mns1: sb, mxs1: sb * sr1 - 1,
+      mns2: sb * sr1, mxs2: sb * sr2 - 1,
+      mns3: sb * sr2,  mxs3: sb * sr3 - 1,
+      mns4: sb * sr3 ,  mxs4: sb * sr4 - 1,
+      mns5: sb * sr4 ,  mxs5: sb * sr5 - 1,
+      mns6: sb * sr5 ,  mxx6: sb * sr6 - 1,
+    }
+    const labels = new Array(30);
+    for (const index in dss) {
+      labels.push(dss[index].toString());
+    }
     const option = {
       tooltip: {
         trigger: 'item',
         // triggerOn: "mousemove",
         formatter: function (params) {
-          return params.name + ' : ' + (params.value ? params.value : 0)
+          return params.name + ' have ' + (params.value ? params.value + ' person': 0)
         },
       },
       visualMap: {
         type: 'piecewise',
         pieces: [
-          { max: 0, label: '0', color: '#eee' },
-          { min: 1, max: 499, label: '1-499', color: '#fff7ba' },
-          { min: 500, max: 4999, label: '500-4999', color: '#ffc24b' },
-          { min: 5000, max: 9999, label: '5000-9999', color: '#ff7c20' },
-          { min: 10000, max: 100000, label: '1万-10万', color: '#fe5e3b' },
-          { min: 100000, max: 500000, label: '10万-50万', color: '#e2482b' },
-          { min: 500000, label: '50万以上', color: '#b93e26' },
+
+          // { max: 0, label: '0', color: '#2E8B57' },
+          // { min: 1, max: 499, label: '1-499', color: '#48D1CC' },
+          // { min: 500, max: 4999, label: '500-4999', color: '#fff7ba' },
+          // { min: 5000, max: 9999, label: '5000-9999', color: '#ffc24b' },
+          // { min: 10000, max: 100000, label: '1万-10万', color: '#fe5e3b' },
+          // { min: 100000, max: 500000, label: '10万-50万', color: '#e2482b' },
+          // { min: 500000, label: '50万以上', color: '#b93e26' },
+
+          { max: 0, label: 0, color: '#2E8B57' },
+          { min: dss.mns0, max: dss.mxs0, label: labels[0]+labels[1], color: '#48D1CC' },
+          { min: dss.mns1, max: dss.mxs1, label: labels[2]+labels[3], color: '#fff7ba' },
+          { min: dss.mns2, max: dss.mxs2, label: labels[4]+labels[5], color: '#ffc24b' },
+          { min: dss.mns3, max: dss.mxs3, label: labels[6]+labels[7], color: '#fe5e3b' },
+          { min: dss.mns4, max: dss.mxs4, label: labels[8]+labels[9], color: '#e2482b' },
+          { min: dss.mns5,                label: labels[10]+labels[11], color: '#b93e26' },
+
         ],
         itemHeight: 10,
         itemWidth: 10,
@@ -71,7 +99,7 @@ const ChinaMap = (props) => {
           map: 'china',
           nameMap: nameMap,
           emphasis: {
-            areaColor: '#c92fff',
+            areaColor: '#ffffff',
             label: {
               show: false,
             },
