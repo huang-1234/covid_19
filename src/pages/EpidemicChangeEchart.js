@@ -3,6 +3,10 @@
 import * as echarts from 'echarts';
 import $ from 'jquery';
 
+import {getAllMouthDate} from '../api/axiosMonth';
+import { chinaProvinceColor } from '../mock/provinceColor';
+// import {countryColors} from '../mock/countryColors';
+
 export const EpidemicChangeEchart = () => {
   
   let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
@@ -15,60 +19,68 @@ export const EpidemicChangeEchart = () => {
   let updateFrequency = 5000;
   let dimension = 0;
 
-  let countryColors = {
-    "Australia": "#00008b",
-    "Canada": "#f00",
-    "China": "#ffde00",
-    "Cuba": "#002a8f",
-    "Finland": "#003580",
-    "France": "#ed2939",
-    "Germany": "#000",
-    "Iceland": "#003897",
-    "India": "#f93",
-    "Japan": "#bc002d",
-    "North Korea": "#024fa2",
-    "South Korea": "#000",
-    "New Zealand": "#00247d",
-    "Norway": "#ef2b2d",
-    "Poland": "#dc143c",
-    "Russia": "#d52b1e",
-    "Turkey": "#e30a17",
-    "United Kingdom": "#00247d",
-    "United States": "#b22234"
-  };
+
   const labApi = 'https://lab.isaaclin.cn'
   $.when(
     $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
     $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
-    // $.getJSON(labApi+`/nCoV/api/provinceName`),
     $.getJSON(labApi+`/nCoV/api/news`),
   ).done(function (res0, res1,res2,res3) {
-    //  console.log('flags<<\n',res0[0],'\ndata<<\n',res1[0],'\nres2<<\n',res2[0],'\nres3<<\n',res3);
+      console.log('flags<<\n',res0[0],'\ndata<<\n',res1,'\nres2<<\n',res2[0],'\nres3<<\n',res3);
     // console.log('res0Length<<',res0[0].length)
     // console.log('res0Length<<',res1[0].length)
     // console.log('res0Length<<',res2[0].length)
-    let flags = res0[0];
+    // let flags = res0[0];
+    let flags = chinaProvinceColor;
     let data = res1[0];
+    // let data1 =  await getAllMouthDate() 
 
-    let years = [];
+    /*   
+    async function getAllMouthDateFunc(){
+      const promiseResovle = await getAllMouthDate();
+      console.log('getAllMouthDateFunc/promiseResovle<<',promiseResovle)
+      return promiseResovle
+    };
+    let data1 = getAllMouthDateFunc();
+    console.log(Object.prototype.toString.call(data1));
+    console.log('getAllMouthDate/data1<<',data1)
+     */
+    let data1;
+    getAllMouthDate()
+      .then((res) => {
+        data1 = res.data;
+      })
+      .catch((err) => {
+        alert(err.message,'敢说我网络错误');
+      })
+    console.log('getAllMouthDate/data1<<',data1)
+
+
+    const dataMonthidx = 5;
+    let months = [];
     for (let i = 0; i < data.length; ++i) {
-      if (years.length === 0 || years[years.length-1] !== data[i][4]) {
-        years.push(data[i][4]);
+      if (months.length === 0 || months[months.length-1] !== data[i][dataMonthidx]) {
+        months.push(data[i][dataMonthidx]);
       }
     }
-    //  console.log('years<<',years)
+    //  console.log('months<<',months)
 
-    function getFlag(countryName) {
-      if (!countryName) {
-        return '';
+    function getFlag(provinceName) {
+      if (!provinceName) {
+        return 'none name';
       }
-      return (flags.find(function (item) {
-        return item.name === countryName;
-      }) || {}).emoji;
+      // return (flags.find(function (item) {
+      //   return item.name === provinceName;
+      // }) || {}).emoji;
+      for (let index in flags) {
+        if (provinceName.toString() === index.toString()) {
+          return flags[index];
+        }
+      }
     }
-    // 开始年份0代表第一个年份数据1800年
+    // 开始月份0代表第一个月份数据
     let startIndex = 0;
-    let startYear = years[startIndex];
+    let startMonth = months[startIndex];
 
     let option = {
       grid: {
@@ -87,7 +99,7 @@ export const EpidemicChangeEchart = () => {
       },
       dataset: {
         source: data.slice(1).filter(function (d) {
-          return d[4] === startYear;
+          return d[dataMonthidx] === startMonth;
         })
       },
       yAxis: {
@@ -104,7 +116,7 @@ export const EpidemicChangeEchart = () => {
           },
           rich: {
             flag: {
-              fontSize: 25,
+              fontSize: 15,
               padding: 5
             }
           }
@@ -118,7 +130,7 @@ export const EpidemicChangeEchart = () => {
         type: 'bar',
         itemStyle: {
           color: function (param) {
-            return countryColors[param.value[3]] || '#5470c6';
+            return chinaProvinceColor[param.value[3]] || '#5470c6';
           }
         },
         encode: {
@@ -144,7 +156,7 @@ export const EpidemicChangeEchart = () => {
           right: 160,
           bottom: 60,
           style: {
-            text: startYear,
+            text: startMonth,
             font: 'bolder 50px monospace',
             fill: 'rgba(100, 100, 100, 0.25)'
           },
@@ -156,20 +168,20 @@ export const EpidemicChangeEchart = () => {
     // console.log(option);
     myChart.setOption(option);
 
-    for (let i = startIndex; i < years.length - 1; ++i) {
+    for (let i = startIndex; i < months.length - 1; ++i) {
       (function (i) {
         setTimeout(function () {
-          updateYear(years[i + 1]);
+          updateMonth(months[i + 1]);
         }, (i - startIndex) * updateFrequency);
       })(i);
     }
 
-    function updateYear(year) {
+    function updateMonth(month) {
       let source = data.slice(1).filter(function (d) {
-        return d[4] === year;
+        return d[dataMonthidx] === month;
       });
       option.series[0].data = source;
-      option.graphic.elements[0].style.text = year;
+      option.graphic.elements[0].style.text = month;
       myChart.setOption(option);
     }
   }).fail(function(error) {

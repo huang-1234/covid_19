@@ -1,0 +1,21 @@
+export  const countryColors = {
+  "Australia": "#00008b",
+  "Canada": "#f00",
+  "China": "#ffde00",
+  "Cuba": "#002a8f",
+  "Finland": "#003580",
+  "France": "#ed2939",
+  "Germany": "#000",
+  "Iceland": "#003897",
+  "India": "#f93",
+  "Japan": "#bc002d",
+  "North Korea": "#024fa2",
+  "South Korea": "#000",
+  "New Zealand": "#00247d",
+  "Norway": "#ef2b2d",
+  "Poland": "#dc143c",
+  "Russia": "#d52b1e",
+  "Turkey": "#e30a17",
+  "United Kingdom": "#00247d",
+  "United States": "#b22234"
+};

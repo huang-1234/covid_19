@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import * as echarts from 'echarts'
 import '../../styles/Trend/TrendTable.less'
 const TrendTable = (props) => {
-  const { foreignData, chinaData } = props
+  const { foreignData  } = props
   const [trendNumber, setTrendNumber] = useState(0)
 
   useEffect(() => {
     const globalDailyHistory = foreignData.globalDailyHistory
-    // console.log(globalDailyHistory)
     const num = []
     const date = []
     for (let i = globalDailyHistory.length - 1; i >= 0; i--) {
@@ -15,7 +14,6 @@ const TrendTable = (props) => {
       if ((globalDailyHistory.length + 1 - i) % 3 === 0) {
         num.unshift(globalDailyHistory[i].all.newAddConfirm)
         date.unshift(globalDailyHistory[i].date)
-        console.log(globalDailyHistory[i])
       }
     }
     // console.log(num ,date)
@@ -28,7 +26,7 @@ const TrendTable = (props) => {
     }
     const option = {
       title: {
-        text: '  海外新增确诊趋势',
+        text: '  全球新增确诊趋势',
       },
       legend: {
         icon: 'rect',
@@ -47,7 +45,7 @@ const TrendTable = (props) => {
         axisLabel: {
           rotate: 45,
           interval: 0,
-          color: '#ccc',
+          color: 'green',
           fontSize: 10,
         },
         axisTick: {
@@ -77,7 +75,7 @@ const TrendTable = (props) => {
           data: num,
           smooth: true,
           itemStyle: {
-            color: '#ff3d18',
+            color: 'lightblue',
           },
           lineStyle: {
             color: '#ff3d18',

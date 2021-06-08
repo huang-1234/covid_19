@@ -19,17 +19,6 @@ export function getChinaMapEchart(chinaData, number) {
       virusDatas[index].value = item.today.confirm;
     }
   })
-  // if (number === 0) {
-  //   virusDatas.push({
-  //     name: '中国',
-  //     value: chinaData.chinaTotal.confirm,
-  //   })
-  // } else {
-  //   virusDatas.push({
-  //     name: '中国',
-  //     value: chinaData.chinaTotal.nowConfirm,
-  //   })
-  // }
   let myChart
   let linearBarDom = echarts.getInstanceByDom(document.querySelector('.map .chinaMap'))
   if(linearBarDom == null) {

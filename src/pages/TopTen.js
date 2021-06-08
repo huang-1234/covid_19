@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import * as echarts from 'echarts'
 const TopTen = (props) => {
-  const { chinaData, foreignData } = props
+  const {  foreignData } = props
   useEffect(() => {
     const num = []
     const nation = []

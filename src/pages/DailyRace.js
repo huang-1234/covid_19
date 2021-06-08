@@ -1,4 +1,5 @@
 import * as echarts from 'echarts/core';
+import $ from 'jquery'
 import {
     DatasetComponent,
     GraphicComponent,

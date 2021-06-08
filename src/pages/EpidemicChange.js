@@ -8,7 +8,7 @@ export default function EpidemicChange() {
 
   return (
     <>
-      <header style={{fontSize:'3rem',marginTop:'3rem'}}>中国各个省份疫情变化趋势图</header>
+      <header style={{fontSize:'3rem',marginTop:'3rem'}}>中国各个省份疫情演变图</header>
       <div style={{height: '50rem', margin: 0}}>
         <div id="container" style={{height: '100%',width: '100%'}}>
         </div>

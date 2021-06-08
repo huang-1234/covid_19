@@ -1,4 +1,4 @@
-	export const  ColorRefTable = {
+	export const  chinaProvinceColor = {
 		"北京市":"#f0f8ff",
 		"天津市":"#faebd7",
 		"河北省":"#00ffff",

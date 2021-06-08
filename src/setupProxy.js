@@ -1,9 +1,7 @@
 const proxy = require('http-proxy-middleware')
 
 module.exports = function (app) {
-  /*
-app.use("自定义url".proxy({  }))
-*/
+  
   app.use(
     '/covid/foreign',
     proxy.createProxyMiddleware({
@@ -42,16 +40,18 @@ app.use("自定义url".proxy({  }))
       cookieDomainRewrite: 'https://lab.isaaclin.cn/nCoV/api/news',
     })
   )
-  // app.use(
-  //   '/covid_data',
-  //   proxy.createProxyMiddleware({
-  //     target: 'https://www.maomin.club/fy/get',
-  //     secure: true,
-  //     changeOrigin: true,
-  //     pathRewrite: {
-  //       '^/covid/news': '',
-  //     },
-  //     cookieDomainRewrite: 'https://www.maomin.club/fy/get',
-  //   })
-  // )
+
+  app.use(
+    '/covid/china_historyData',
+    proxy.createProxyMiddleware({
+      target: 'https://ncov.dxy.cn/ncovh5/view/pneumonia',
+      secure: true,
+      changeOrigin: true,
+      pathRewrite: {
+        '^/covid/china_historyData': '',
+      },
+      cookieDomainRewrite: 'https://ncov.dxy.cn/ncovh5/view/pneumonia',
+    })
+  )
+
 }

@@ -1,12 +1,26 @@
 .container {
-  width: 80vw;
+  width: 960px;
   margin: 20px auto;
   padding: 20px 0;
   text-align: center;
   background-color: #eee3e3;
-  border-radius: 15px;
+  border-radius: 1rem;
+}
+.container .page_china_map {
+  margin: 4rem auto;
+}
+.container .trend_china {
+  margin: 20% 20%;
+}
+.container .epidemic_change {
+  margin: 20% 20%;
+}
+.container .world_map {
+  margin: 20% 20%;
+}
+.container .world_trend {
+  margin: 20% 20%;
 }
 .container .news {
-  width: 80vw;
-  margin: auto 64px ;
+  margin: auto 64px;
 }

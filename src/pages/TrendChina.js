@@ -1,13 +1,14 @@
 import React from 'react'
 // import Header from '../components/Trend/Header'
-import TrendTableChina from '../components/Trend/TrendTableChina'
+import TrendTableChina from '../components/Trend/TrendChina.jsx'
 
 const TrendChina = (props) => {
-  const {foreignData, chinaData} = props
+  const { chinaData } = props
+  console.log('TrendChina/chinaData<<', chinaData)
   return (
     <div>
       <header>中国疫情趋势</header>
-      {foreignData && chinaData ? ( <TrendTableChina foreignData={foreignData} chinaData={chinaData} /> ) : null}
+      {chinaData ? ( <TrendTableChina  chinaData={chinaData} /> ) : null}
     </div>
   )
 }

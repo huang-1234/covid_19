@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../components/Map/Header'
 import Number from '../components/Map/Number'
 import WorldMap from '../components/Map/WorldMap'
