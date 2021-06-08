@@ -10,10 +10,8 @@ const PageChinaMap = (props) => {
     <div className='brief'>
       <ChinaHeader chinaData={chinaData} />
       <ChinaNumber chinaData={chinaData} />
-      {/* {foreignData && chinaData ? (
-        <WorldMap foreignData={foreignData} chinaData={chinaData} />
-      ) : null}
-       */}
+
+      
       {foreignData && chinaData ? (
         <ChinaMap  chinaData={chinaData} />
       ) : null}

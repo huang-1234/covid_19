@@ -12,10 +12,9 @@ export const EpidemicChangeEchart = () => {
   let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
   let dom = document.getElementById("container");
   let myChart = echarts.init(dom);
-  // let app = {};
 
   let option;
-  // 每隔update Frequency/1000 秒年份就加一
+  // 每隔update Frequency/1000 秒月份就加一
   let updateFrequency = 5000;
   let dimension = 0;
 
@@ -49,6 +48,7 @@ export const EpidemicChangeEchart = () => {
     getAllMouthDate()
       .then((res) => {
         data1 = res.data;
+        console.log('getAllMouthDate/data1<<',data1);
       })
       .catch((err) => {
         alert(err.message,'敢说我网络错误');

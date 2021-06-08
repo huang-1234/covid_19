@@ -16,7 +16,6 @@ const TrendTable = (props) => {
         date.unshift(globalDailyHistory[i].date)
       }
     }
-    // console.log(num ,date)
     let myChart
     let linearBarDom = echarts.getInstanceByDom(document.querySelector('.tendency .map_info'))
     if(linearBarDom == null) {

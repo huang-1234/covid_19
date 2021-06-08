@@ -6,7 +6,6 @@ import WorldMap from '../components/Map/WorldMap'
 
 const Map = (props) => {
   const { foreignData, chinaData } = props
-  // console.log(foreignData)
   return (
     <div className='brief'>
       <Header foreignData={foreignData} />
@@ -14,10 +13,6 @@ const Map = (props) => {
       {foreignData && chinaData ? (
         <WorldMap foreignData={foreignData} chinaData={chinaData} />
       ) : null}
-      
-      {/* {foreignData && chinaData ? (
-        <ChinaMap foreignData={foreignData} chinaData={chinaData} />
-      ) : null} */}
     </div>
   )
 }

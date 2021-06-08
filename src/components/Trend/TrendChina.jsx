@@ -31,7 +31,7 @@ const TrendChina = (props) => {
     const selectIdx = typeSelect.selectedIndex;
     //  console.log('selectIdx<<', selectIdx)
     const typeValue = typeSelect.options[selectIdx].value; // 数据类型
-    console.log('getSelectDOM/typeValue<<', typeValue);
+    //  console.log('getSelectDOM/typeValue<<', typeValue);
     setDataType(typeValue)
     return typeValue;
   }
@@ -41,11 +41,11 @@ const TrendChina = (props) => {
     getSelectDOM()
     const typeValue = getSelectDOM()
     // setDataType(typeValue)
-    console.log('useEffect/dataType<<',typeValue)
+     console.log('useEffect/dataType<<',typeValue)
     getTrendChinaEchart(chinaMockData
       , typeValue
       )
-  }, [chinaData, dataType])
+  }, [chinaData, chinaMockData, dataType])
 
   return (
     <div className='tendency_china' >

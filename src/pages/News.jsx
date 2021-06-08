@@ -21,7 +21,7 @@ export default function News(props) {
     const results = jsonData.results;
     setNewslist(results);
   },[newslist])
-   console.log('News<<',newslist)
+  //  console.log('News<<',newslist)
 
   return (
     <>
