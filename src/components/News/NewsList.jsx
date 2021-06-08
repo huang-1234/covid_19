@@ -12,20 +12,20 @@ export default function ShowNewsList(props) {
     setNewslist(props.propsNewslist)
   },[props.propsNewslist])
   //  console.log('ShowNewsList/newslist<<', newslist); // 检测售后接受到了数据
-
+  const mathRandom = Math.random();
   const newslistNodes = newslist?.map((item) => {
     const formateTime = transformTime(parseInt(item.pubDate))
     return (
       <div className="news_box">
-        <div className="news_header">
-          <a key={item.sourceUrl} href={ item.sourceUrl } target="_blank" rel='noreferrer'>
+        <div key={mathRandom} className="news_header">
+          <a key={item.sourceUrl +mathRandom} href={ item.sourceUrl } target="_blank" rel='noreferrer'>
             {item.title}
           </a>
         </div>
-        <header key={item.pubDate} className="news_header">
+        <header key={item.pubDate + mathRandom} className="news_header">
           {/* <span>{item.infoSource}</span> */}
           <span>央视新闻林科大客户端 --</span>
-          <span key={item.formateTime} className="news_time"> 时间：{ formateTime} </span>
+          <span key={item.formateTime +mathRandom} className="news_time"> 时间：{ formateTime} </span>
         </header>
         <div className="new_main">
           <span key={item.summary}>

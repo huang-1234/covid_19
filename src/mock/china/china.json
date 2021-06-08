@@ -14,7 +14,8 @@
         "midDangerCount": 0,
         "suspectedCount": 0,
         "suspectedCountIncr": 0
-    }, {
+    }, 
+    {
         "confirmedCount": 291,
         "confirmedIncr": 74,
         "curedCount": 25,

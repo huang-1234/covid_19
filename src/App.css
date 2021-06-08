@@ -13,6 +13,7 @@
   margin: 20% 20%;
 }
 .container .epidemic_change {
+  height: fit-content;
   margin: 20% 20%;
 }
 .container .world_map {

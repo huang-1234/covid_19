@@ -1,13 +1,11 @@
 const axios = require('axios')
-const fs = require('fs')
-
-
+const {dataUrl} = require('./config')
 const getMouthTime = (mouthTime) => {
   return (mouthTime - (mouthTime % 100)) / 100
 }
 
 const getAllMouthDate = async () => {
-  const res = await axios.get('https://ncov.dxy.cn/ncovh5/view/pneumonia')
+  const res = await axios.get(dataUrl.chinaHistoryDataUrl)
   const re =
     /.*try { window.getAreaStat = (.*)}catch\(e\){}<\/script><script id="getListByCountryTypeService2true">.*/
   const strOfHtml = res.data.match(re)
@@ -18,6 +16,7 @@ const getAllMouthDate = async () => {
       ['confirm', 'nowConfirm', 'dead', 'heal', 'chinaProvince', 'mouthTime']
     ],
   };
+  const provinceAllData = []
   for (let i = 0; i < data.length; i++) {
     const cnt = await getProvinceData(data[i])
     // console.log(cnt);
@@ -27,18 +26,28 @@ const getAllMouthDate = async () => {
       for (let item in cntItem) {
         cntAns.push(cntItem[item]);
       }
-      ans.data.push(cntAns);
+      provinceAllData.push(cntAns);
       ans.code = 'success';
     }
   }
-  console.log(ans)
-  fs.writeFile('./ProvincesMonthData.json', ans, err => {
-    if (err) {
-      console.error(err)
-      return
+  provinceAllData.sort((a, b) => {
+    const val1 = a[5];
+    const val2 = b[5];
+    const name1 = a[4];
+    const name2 = b[4];
+    if(val1 < val2) {
+      return -1
+    } else if(val1 === val2) {
+      if(name1 < name2) return -1;
+      else return 1;
+    } else {
+      return 1;
     }
-    console.log('write json file success');
   })
+  for(let i = 0 ; i < provinceAllData.length ; i++) {
+    ans.data.push(provinceAllData[i]);
+  }
+  console.log(ans);
   return ans;
 }
 
@@ -52,13 +61,13 @@ const getProvinceData = async (province) => {
     r = 0,
     proStr = 0
   while (r < data.length) {
-    if (l == r) {
+    if (l === r) {
       proStr = getMouthTime(data[l].dateId)
     }
-    if (getMouthTime(data[r].dateId) == proStr) {
+    if (getMouthTime(data[r].dateId) === proStr) {
       r++
     } else {
-      const cnt = data.slice(l, r)
+      const cnt = data.slice(r-1, r)
       const mouthData = getCount(cnt, proStr, provinceName)
       ans.push(mouthData)
       l = r
@@ -86,4 +95,9 @@ const getCount = (data, mouthTime, provinceName) => {
     chinaProvince: provinceName,
     mouthTime,
   }
+}
+
+// getAllMouthDate();
+module.exports = {
+  getAllMouthDate
 }

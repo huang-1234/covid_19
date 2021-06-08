@@ -15,9 +15,10 @@ const getAllMouthDate = async () => {
   const ans = {
     code: '',
     data: [
-      ['confirm', 'nowConfirm', 'dead', 'heal', 'chinaProvince', 'mouthTime']
+      ['confirm', 'nowConfirm', 'dead', 'heal', 'chinaProvince', 'monthTime']
     ],
   };
+  const provinceAllData = []
   for (let i = 0; i < data.length; i++) {
     const cnt = await getProvinceData(data[i])
     // console.log(cnt);
@@ -27,13 +28,31 @@ const getAllMouthDate = async () => {
       for (let item in cntItem) {
         cntAns.push(cntItem[item]);
       }
-      ans.data.push(cntAns);
+      provinceAllData.push(cntAns);
       ans.code = 'success';
     }
   }
-  console.log(ans)
-  fs.writeFile('./ProvincesMonthData.json', ans, err => {
+  provinceAllData.sort((a, b) => {
+    const val1 = a[5];
+    const val2 = b[5];
+    const name1 = a[4];
+    const name2 = b[4];
+    if(val1 < val2) {
+      return -1
+    } else if(val1 == val2) {
+      if(name1 < name2) return -1;
+      else return 1;
+    } else {
+      return 1;
+    }
+  })
+  for(let i = 0 ; i < provinceAllData.length ; i++) {
+    ans.data.push(provinceAllData[i]);
+  }
+  console.log('axiosMonth<<', ans);
+  fs.writeFile('./ProvincesMonthData.json', JSON.stringify(ans), (err) => {
     if (err) {
+      console.log('failed write file');
       console.error(err)
       return
     }
@@ -58,7 +77,7 @@ const getProvinceData = async (province) => {
     if (getMouthTime(data[r].dateId) == proStr) {
       r++
     } else {
-      const cnt = data.slice(l, r)
+      const cnt = data.slice(r-1, r)
       const mouthData = getCount(cnt, proStr, provinceName)
       ans.push(mouthData)
       l = r
@@ -87,3 +106,7 @@ const getCount = (data, mouthTime, provinceName) => {
     mouthTime,
   }
 }
+
+getAllMouthDate();
+module.export =getAllMouthDate
+

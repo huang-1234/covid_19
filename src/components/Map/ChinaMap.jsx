@@ -70,13 +70,13 @@ const ChinaMap = (props) => {
         type: 'piecewise',
         pieces: [
 
-          { max: 1, label: 0, color: '#2E8B57' },
+          { max: 0, label: 0, color: '#2E8B57' },
           { min: dss.mns0, max: dss.mxs0, label: labels[0]+labels[1], color: '#48D1CC' },
           { min: dss.mns1, max: dss.mxs1, label: labels[2]+labels[3], color: '#fff7ba' },
           { min: dss.mns2, max: dss.mxs2, label: labels[4]+labels[5], color: '#ffc24b' },
           { min: dss.mns3, max: dss.mxs3, label: labels[6]+labels[7], color: '#fe5e3b' },
-          { min: dss.mns4, max: dss.mxs4, label: labels[8]+labels[9], color: '#e2482b' },
-          { min: dss.mns5,                label: labels[10]+labels[11], color: '#b93e26' },
+          { min: dss.mns4, max: dss.mxs4, label: labels[8]+labels[9], color: '#CD5C5C' },
+          { min: dss.mns5,                label: labels[10]+labels[11], color: '#800000' },
 
         ],
         itemHeight: 10,
@@ -105,7 +105,7 @@ const ChinaMap = (props) => {
 
     // getChinaMapEchart(chinaData, number);
 
-  }, [chinaData.areaTree[0].children, chinaData.chinaTotal.confirm, chinaData.chinaTotal.nowConfirm, number])
+  }, [chinaData.areaTree, chinaData.chinaTotal.confirm, chinaData.chinaTotal.nowConfirm, number])
 
   return (
     <div className='map'>

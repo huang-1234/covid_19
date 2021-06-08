@@ -2,12 +2,12 @@
 
 import * as echarts from 'echarts';
 import $ from 'jquery';
-
-import {getAllMouthDate} from '../api/axiosMonth';
+import jsonData from  '../mock/china/ProvincesMonthData.json'
+// import {getAllMouthDate} from '../api/axiosMonth';
 import { chinaProvinceColor } from '../mock/provinceColor';
 // import {countryColors} from '../mock/countryColors';
 
-export const EpidemicChangeEchart = () => {
+export const EpidemicChangeEchart = (dataSel,race) => {
   
   let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
   let dom = document.getElementById("container");
@@ -15,8 +15,9 @@ export const EpidemicChangeEchart = () => {
 
   let option;
   // 每隔update Frequency/1000 秒月份就加一
-  let updateFrequency = 5000;
-  let dimension = 0;
+  let updateFrequency = race || 50000;
+  const showRow = dataSel;
+  // let dimension = 0;
 
 
   const labApi = 'https://lab.isaaclin.cn'
@@ -24,14 +25,14 @@ export const EpidemicChangeEchart = () => {
     $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
     $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
     $.getJSON(labApi+`/nCoV/api/news`),
-  ).done(function (res0, res1,res2,res3) {
-      console.log('flags<<\n',res0[0],'\ndata<<\n',res1,'\nres2<<\n',res2[0],'\nres3<<\n',res3);
+  ).done(function (res0, res1,res2) {
+      // console.log('flags<<\n',res0[0],'\ndata<<\n',res1,'\nres2<<\n',res2[0]);
     // console.log('res0Length<<',res0[0].length)
     // console.log('res0Length<<',res1[0].length)
     // console.log('res0Length<<',res2[0].length)
     // let flags = res0[0];
     let flags = chinaProvinceColor;
-    let data = res1[0];
+    
     // let data1 =  await getAllMouthDate() 
 
     /*   
@@ -44,20 +45,32 @@ export const EpidemicChangeEchart = () => {
     console.log(Object.prototype.toString.call(data1));
     console.log('getAllMouthDate/data1<<',data1)
      */
-    let data1;
-    getAllMouthDate()
+    // let data;
+/* 
+    async function getAllProvinceData() {
+      return await getAllMouthDate()
       .then((res) => {
-        data1 = res.data;
-        console.log('getAllMouthDate/data1<<',data1);
+        const data = res.data;
+        console.log('getAllMouthDate/then/data<<', data,  data.length);
+        console.log('Object.prototype.toString.call<<data<<', Object.prototype.toString.call(data));
+        const idx = 5;
+        console.log('data[0][idx]<<', data[0][idx]);
+        return data;
       })
       .catch((err) => {
         alert(err.message,'敢说我网络错误');
       })
-    console.log('getAllMouthDate/data1<<',data1)
+    }
+ */
+    console.log('jsonData<<',jsonData)
+    let data = jsonData.data;
+    console.log('Object.prototype.toString.call<<data<<', Object.prototype.toString.call(data));
+    console.log('data<<',data);
 
 
     const dataMonthidx = 5;
     let months = [];
+    // console.log('data[2]<<',data[2]);
     for (let i = 0; i < data.length; ++i) {
       if (months.length === 0 || months[months.length-1] !== data[i][dataMonthidx]) {
         months.push(data[i][dataMonthidx]);
@@ -69,9 +82,7 @@ export const EpidemicChangeEchart = () => {
       if (!provinceName) {
         return 'none name';
       }
-      // return (flags.find(function (item) {
-      //   return item.name === provinceName;
-      // }) || {}).emoji;
+      
       for (let index in flags) {
         if (provinceName.toString() === index.toString()) {
           return flags[index];
@@ -79,7 +90,7 @@ export const EpidemicChangeEchart = () => {
       }
     }
     // 开始月份0代表第一个月份数据
-    let startIndex = 0;
+    let startIndex = 1;
     let startMonth = months[startIndex];
 
     let option = {
@@ -105,14 +116,15 @@ export const EpidemicChangeEchart = () => {
       yAxis: {
         type: 'category',
         inverse: true,
-        max: 10,
+        max: 30,
         axisLabel: {
           show: true,
           textStyle: {
             fontSize: 14
           },
           formatter: function (value) {
-            return value + '{flag|' + getFlag(value) + '}';
+            return value ;
+            // return value + '{flag|' + getFlag(value) + '}';
           },
           rich: {
             flag: {
@@ -130,12 +142,12 @@ export const EpidemicChangeEchart = () => {
         type: 'bar',
         itemStyle: {
           color: function (param) {
-            return chinaProvinceColor[param.value[3]] || '#5470c6';
+            return chinaProvinceColor[param.value[4]] || '#5470c6';
           }
         },
         encode: {
-          x: dimension,
-          y: 3
+          x: showRow,
+          y: 4
         },
         label: {
           show: true,
@@ -157,8 +169,8 @@ export const EpidemicChangeEchart = () => {
           bottom: 60,
           style: {
             text: startMonth,
-            font: 'bolder 50px monospace',
-            fill: 'rgba(100, 100, 100, 0.25)'
+            font: 'bolder 32px monospace',
+            fill: '#7fff00'
           },
           z: 100
         }]

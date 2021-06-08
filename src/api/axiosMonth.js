@@ -13,7 +13,7 @@ const getAllMouthDate = async () => {
   const ans = {
     code: '',
     data: [
-      ['confirm', 'nowConfirm', 'dead', 'heal', 'chinaProvince', 'mouthTime']
+      ['confirm', 'nowConfirm', 'dead', 'heal', 'chinaProvince', 'monthTime']
     ],
   };
   const provinceAllData = []
@@ -47,7 +47,7 @@ const getAllMouthDate = async () => {
   for(let i = 0 ; i < provinceAllData.length ; i++) {
     ans.data.push(provinceAllData[i]);
   }
-  console.log(ans);
+  console.log('axiosMonth<<', ans);
   return ans;
 }
 
