@@ -5,27 +5,20 @@ import "../styles/pages/EpidemicChange.less";
 import jsonData from  '../mock/china/ProvincesMonthData.json'
 
 export default function EpidemicChange() {
-  const [province, setProvince] = useState(null)
+
+  const [settingIsShow, setSettingIsShow] = useState(null)
   const [dataSel, setDataSel] = useState(null);
   const [race, setRace] = useState(50000);  // 默认为50秒
   const [provinceCount, setProvinceCount] = useState(10)
 
   useEffect(() => {
-    getProvinces();
     getSelectData();
     getRace();
     getProvinceCount()
-    EpidemicChangeEchart(province,dataSel, race,provinceCount,jsonData.data);
-  }, [province, dataSel, race, provinceCount]);
+    EpidemicChangeEchart(dataSel, race,provinceCount,jsonData.data);
+  }, [dataSel, race, provinceCount]);
 
 
-  const getProvinces = () => {
-    let typeSelect = document.getElementById("provinceSelect");
-    const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
-    //  console.log('getProvinces/typeValue<<', typeValue);
-    setProvince(typeValue);
-    return typeValue;
-  };
   const getSelectData = () => {
     let typeSelect = document.getElementById("dataSelect");
     const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
@@ -42,6 +35,7 @@ export default function EpidemicChange() {
     setRace(typeValue);
     return typeValue;
   };
+  
   const getProvinceCount = () => {
     let typeSelect = document.getElementById("provinceCountSelect");
     //  console.log('typeSelect<<',typeSelect)
@@ -52,23 +46,10 @@ export default function EpidemicChange() {
   };
 
 
-  const optionsNodes = provincesName.map(item => {
-    return (
-      <option key={item} value={item}>{item}</option>
-    )
-  })
-
   return (
     <>
       <header>中国各个省份疫情演变图</header>
-      <div className="settings">
-        setting
-        <div className="dataSel_box">
-          <select id="provinceSelect" onChange={() => getProvinces()}>
-            <option value={'china'}>选择省份</option>
-            {optionsNodes}
-          </select>
-        </div>
+      <div className="settings">setting
         <div className="dataSel_box">
           {/* <label htmlFor="dataSelect">数据选择</label>  */}
           <select id="dataSelect" onChange={() => getSelectData()}>

@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { chinaProvinceColor } from '../mock/provinceColor';
 // import {countryColors} from '../mock/countryColors';
 
-export const EpidemicChangeEchart = (province,dataSel,race,provinceCount,data) => {
+export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
   
   let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
   let dom = document.getElementById("container");
@@ -20,11 +20,11 @@ export const EpidemicChangeEchart = (province,dataSel,race,provinceCount,data) =
   const showMax = provinceCount;
 
 
-  const labApi = 'https://lab.isaaclin.cn'
+  // const labApi = 'https://lab.isaaclin.cn'
   $.when(
-    $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
-    $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
-    $.getJSON(labApi+`/nCoV/api/news`),
+    // $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
+    // $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
+    // $.getJSON(labApi+`/nCoV/api/news`),
   ).done(function (res0, res1,res2) {
       // console.log('flags<<\n',res0[0],'\ndata<<\n',res1,'\nres2<<\n',res2[0]);
     // console.log('res0Length<<',res0[0].length)
@@ -36,7 +36,7 @@ export const EpidemicChangeEchart = (province,dataSel,race,provinceCount,data) =
     // let data1 =  await getAllMouthDate() 
 
     // let data;
-/* 
+    /* 
     async function getAllProvinceData() {
       return await getAllMouthDate()
       .then((res) => {
@@ -51,7 +51,7 @@ export const EpidemicChangeEchart = (province,dataSel,race,provinceCount,data) =
         alert(err.message,'敢说我网络错误');
       })
     }
- */
+    */
     // console.log('jsonData<<',jsonData)
     // let data = jsonData.data;
     console.log('Object.prototype.toString.call<<data<<', Object.prototype.toString.call(data));

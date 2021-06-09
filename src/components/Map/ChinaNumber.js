@@ -22,7 +22,7 @@ const Number = (props) => {
       </div>
       <div className='number'>
         <div className="number3">{chinaData ? chinaData.chinaTotal.importedCase : ''}</div>
-        <div className="text">特例人数</div>
+        <div className="text">境外输入</div>
         <div className="more3">最近+{chinaData ? chinaData.chinaAdd.importedCase : ''}</div>
       </div>
       <div className='number'>
