@@ -3,13 +3,12 @@
 import * as echarts from 'echarts';
 import $ from 'jquery';
 
-// import {getAllMouthDate} from '../api/axiosMonth';
+import {getAllMouthDate} from '../api/axiosMonth';
 import { chinaProvinceColor } from '../mock/provinceColor';
 // import {countryColors} from '../mock/countryColors';
 
 export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
   
-  let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
   let dom = document.getElementById("container");
   let myChart = echarts.init(dom);
 
@@ -36,7 +35,7 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
     // let data1 =  await getAllMouthDate() 
 
     // let data;
-    /* 
+/*     
     async function getAllProvinceData() {
       return await getAllMouthDate()
       .then((res) => {
@@ -52,6 +51,7 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
       })
     }
     */
+    
     // console.log('jsonData<<',jsonData)
     // let data = jsonData.data;
     console.log('Object.prototype.toString.call<<data<<', Object.prototype.toString.call(data));

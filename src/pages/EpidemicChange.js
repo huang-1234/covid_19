@@ -6,8 +6,8 @@ import jsonData from  '../mock/china/ProvincesMonthData.json'
 
 export default function EpidemicChange() {
 
-  const [settingIsShow, setSettingIsShow] = useState(null)
-  const [dataSel, setDataSel] = useState(null);
+  const [settingIsShow, setSettingIsShow] = useState(null)  // 设置按钮隐藏和显示
+  const [dataSel, setDataSel] = useState(null);  // 选择的数据的类型
   const [race, setRace] = useState(50000);  // 默认为50秒
   const [provinceCount, setProvinceCount] = useState(10)
 

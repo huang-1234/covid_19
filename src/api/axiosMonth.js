@@ -97,7 +97,7 @@ const getCount = (data, mouthTime, provinceName) => {
   }
 }
 
-// getAllMouthDate();
+getAllMouthDate();
 module.exports = {
   getAllMouthDate
 }
