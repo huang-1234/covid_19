@@ -6,9 +6,9 @@ import {provincesName} from '../../mock/provincesName'
 import { getTrendChinaEchart } from './TrendChinaEchart'
 import { getLinerTrendChinaEchart } from './LinerTrendChinaEchart'
 
-// import hubei from '../../mock/provinceData/湖北省';
+
+/* 
 import china from "../../mock/china/china"
-// import china from '../../mock/china/湖北省'
 
 import data0 from "../../mock/china/北京市"
 import data1 from "../../mock/china/天津市"
@@ -44,9 +44,11 @@ import data30 from "../../mock/china/新疆"
 import data31 from "../../mock/china/香港"
 import data32 from "../../mock/china/澳门"
 import data33 from "../../mock/china/台湾"
+ */
 
+import { getProvincesData } from '../../api/getSelectProvinceData'
 
-import {getProvincesData} from '../../api/getProvincesData'
+import {getSelectProvinceData} from '../../api/getSelectProvinceData'
 
 
 function TrendChina(props) {
@@ -57,91 +59,97 @@ function TrendChina(props) {
 
   console.log('provincename<<',provincename)
 
+  // 下面是一个bug，表示require的参数不能是一个变量，否则加载不进来
   // const chinaprovinceStr = '../../mock/china/' + provincename;
   // const china = require(chinaprovinceStr);
   // const china = require('../../mock/china/china');
 
-  let chinaMockData;
+  
   // const chinaMockData = china.data
-  if (provincesName[0] === provincename) {
-    chinaMockData = data0.data;
-  } else if (provincesName[1]===provincename) {
-    chinaMockData = data1.data;
-  } else if (provincesName[2]===provincename) {
-    chinaMockData = data2.data;
-  } else if (provincesName[3]===provincename) {
-    chinaMockData = data3.data;
-  } else if (provincesName[4]===provincename) {
-    chinaMockData = data4.data;
-  } else if (provincesName[5]===provincename) {
-    chinaMockData = data5.data;
-  } else if (provincesName[6]===provincename) {
-    chinaMockData = data6.data;
-  } else if (provincesName[7]===provincename) {
-    chinaMockData = data7.data;
-  } else if (provincesName[8]===provincename) {
-    chinaMockData = data8.data;
-  } else if (provincesName[9]===provincename) {
-    chinaMockData = data9.data;
-  } else if (provincesName[10]===provincename) {
-    chinaMockData = data10.data;
-  } else if (provincesName[11]===provincename) {
-    chinaMockData = data11.data;
-  } else if (provincesName[12]===provincename) {
-    chinaMockData = data12.data;
-  } else if (provincesName[13]===provincename) {
-    chinaMockData = data13.data;
-  } else if (provincesName[14]===provincename) {
-    chinaMockData = data14.data;
-  } else if (provincesName[15]===provincename) {
-    chinaMockData = data15.data;
-  } else if (provincesName[16]===provincename) {
-    chinaMockData = data16.data;
-  } else if (provincesName[17]===provincename) {
-    chinaMockData = data17.data;
-  } else if (provincesName[18]===provincename) {
-    chinaMockData = data18.data;
-  } else if (provincesName[19]===provincename) {
-    chinaMockData = data19.data;
-  } else if (provincesName[20]===provincename) {
-    chinaMockData = data20.data;
-  } else if (provincesName[21]===provincename) {
-    chinaMockData = data21.data;
-  } else if (provincesName[22]===provincename) {
-    chinaMockData = data22.data;
-  } else if (provincesName[23]===provincename) {
-    chinaMockData = data23.data;
-  } else if (provincesName[24]===provincename) {
-    chinaMockData = data24.data;
-  } else if (provincesName[25] === provincename) {
-    chinaMockData = data25.data;
-  } else if (provincesName[26] === provincename) {
-    chinaMockData = data26.data;
-  } else if (provincesName[26] === provincename) {
-    chinaMockData = data26.data;
-  } else if (provincesName[27] === provincename) {
-    chinaMockData = data27.data;
-  } else if (provincesName[28] === provincename) {
-    chinaMockData = data28.data;
-  } else if (provincesName[29] === provincename) {
-    chinaMockData = data29.data;
-  } else if (provincesName[30] === provincename) {
-    chinaMockData = data30.data;
-  } else if (provincesName[31] === provincename) {
-    chinaMockData = data31.data;
-  } else if (provincesName[32] === provincename) {
-    chinaMockData = data32.data;
-  } else if (provincesName[33] === provincename) {
-    chinaMockData = data33.data;
-  } else {
-    chinaMockData = china.data;
-  }
 
-  // provincesName.forEach((index,item) => {
-  //   if (item===provincename) {
-  //     chinaMockData = item.data;
-  //   }
-  // })
+  /* 
+  // 下面的if else一定要重写为switch
+  const getSelectProvinceData = (provincename) => {
+    let chinaMockData
+    if (provincesName[0] === provincename) {
+      chinaMockData = data0.data;
+    } else if (provincesName[1]===provincename) {
+      chinaMockData = data1.data;
+    } else if (provincesName[2]===provincename) {
+      chinaMockData = data2.data;
+    } else if (provincesName[3]===provincename) {
+      chinaMockData = data3.data;
+    } else if (provincesName[4]===provincename) {
+      chinaMockData = data4.data;
+    } else if (provincesName[5]===provincename) {
+      chinaMockData = data5.data;
+    } else if (provincesName[6]===provincename) {
+      chinaMockData = data6.data;
+    } else if (provincesName[7]===provincename) {
+      chinaMockData = data7.data;
+    } else if (provincesName[8]===provincename) {
+      chinaMockData = data8.data;
+    } else if (provincesName[9]===provincename) {
+      chinaMockData = data9.data;
+    } else if (provincesName[10]===provincename) {
+      chinaMockData = data10.data;
+    } else if (provincesName[11]===provincename) {
+      chinaMockData = data11.data;
+    } else if (provincesName[12]===provincename) {
+      chinaMockData = data12.data;
+    } else if (provincesName[13]===provincename) {
+      chinaMockData = data13.data;
+    } else if (provincesName[14]===provincename) {
+      chinaMockData = data14.data;
+    } else if (provincesName[15]===provincename) {
+      chinaMockData = data15.data;
+    } else if (provincesName[16]===provincename) {
+      chinaMockData = data16.data;
+    } else if (provincesName[17]===provincename) {
+      chinaMockData = data17.data;
+    } else if (provincesName[18]===provincename) {
+      chinaMockData = data18.data;
+    } else if (provincesName[19]===provincename) {
+      chinaMockData = data19.data;
+    } else if (provincesName[20]===provincename) {
+      chinaMockData = data20.data;
+    } else if (provincesName[21]===provincename) {
+      chinaMockData = data21.data;
+    } else if (provincesName[22]===provincename) {
+      chinaMockData = data22.data;
+    } else if (provincesName[23]===provincename) {
+      chinaMockData = data23.data;
+    } else if (provincesName[24]===provincename) {
+      chinaMockData = data24.data;
+    } else if (provincesName[25] === provincename) {
+      chinaMockData = data25.data;
+    } else if (provincesName[26] === provincename) {
+      chinaMockData = data26.data;
+    } else if (provincesName[26] === provincename) {
+      chinaMockData = data26.data;
+    } else if (provincesName[27] === provincename) {
+      chinaMockData = data27.data;
+    } else if (provincesName[28] === provincename) {
+      chinaMockData = data28.data;
+    } else if (provincesName[29] === provincename) {
+      chinaMockData = data29.data;
+    } else if (provincesName[30] === provincename) {
+      chinaMockData = data30.data;
+    } else if (provincesName[31] === provincename) {
+      chinaMockData = data31.data;
+    } else if (provincesName[32] === provincename) {
+      chinaMockData = data32.data;
+    } else if (provincesName[33] === provincename) {
+      chinaMockData = data33.data;
+    } else {
+      chinaMockData = china.data;
+    }
+    return chinaMockData
+  }
+   */
+  // let chinaMockData = getSelectProvinceData()
+
+  let chinaMockData = getSelectProvinceData(provincename)
 
   const selectRef = useRef(null);
 
@@ -200,6 +208,7 @@ function TrendChina(props) {
             <option value="curedCount">治愈人数</option>
             <option value="currentConfirmedCount">现有确诊</option>
             <option value="deadCount">死亡人数</option>
+            <option value="suspectedCount">疑似病例</option>
           </select>
         </div>
       </div>
