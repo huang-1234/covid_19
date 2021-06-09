@@ -8,3 +8,9 @@ header {
   display: flex;
   justify-content: space-around;
 }
+.settings .dataSel_box {
+  display: inline-block !important;
+  height: 1.5rem;
+  border: 2px solid green;
+  border-radius: 0.5rem;
+}

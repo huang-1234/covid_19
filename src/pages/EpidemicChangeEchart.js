@@ -1,13 +1,13 @@
 
-
+/* 动态排序柱状图 */
 import * as echarts from 'echarts';
 import $ from 'jquery';
-import jsonData from  '../mock/china/ProvincesMonthData.json'
+
 // import {getAllMouthDate} from '../api/axiosMonth';
 import { chinaProvinceColor } from '../mock/provinceColor';
 // import {countryColors} from '../mock/countryColors';
 
-export const EpidemicChangeEchart = (dataSel,race) => {
+export const EpidemicChangeEchart = (province,dataSel,race,provinceCount,data) => {
   
   let ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
   let dom = document.getElementById("container");
@@ -16,8 +16,8 @@ export const EpidemicChangeEchart = (dataSel,race) => {
   let option;
   // 每隔update Frequency/1000 秒月份就加一
   let updateFrequency = race || 50000;
-  const showRow = dataSel;
-  // let dimension = 0;
+  const showRow = dataSel; // 选择展示哪一项数据
+  const showMax = provinceCount;
 
 
   const labApi = 'https://lab.isaaclin.cn'
@@ -35,16 +35,6 @@ export const EpidemicChangeEchart = (dataSel,race) => {
     
     // let data1 =  await getAllMouthDate() 
 
-    /*   
-    async function getAllMouthDateFunc(){
-      const promiseResovle = await getAllMouthDate();
-      console.log('getAllMouthDateFunc/promiseResovle<<',promiseResovle)
-      return promiseResovle
-    };
-    let data1 = getAllMouthDateFunc();
-    console.log(Object.prototype.toString.call(data1));
-    console.log('getAllMouthDate/data1<<',data1)
-     */
     // let data;
 /* 
     async function getAllProvinceData() {
@@ -62,8 +52,8 @@ export const EpidemicChangeEchart = (dataSel,race) => {
       })
     }
  */
-    console.log('jsonData<<',jsonData)
-    let data = jsonData.data;
+    // console.log('jsonData<<',jsonData)
+    // let data = jsonData.data;
     console.log('Object.prototype.toString.call<<data<<', Object.prototype.toString.call(data));
     console.log('data<<',data);
 
@@ -116,7 +106,7 @@ export const EpidemicChangeEchart = (dataSel,race) => {
       yAxis: {
         type: 'category',
         inverse: true,
-        max: 30,
+        max: showMax,
         axisLabel: {
           show: true,
           textStyle: {

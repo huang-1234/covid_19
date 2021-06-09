@@ -1,33 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react'
 
 import './TrendChina.less'
+import {provincesName} from '../../mock/provincesName'
 
 import { getTrendChinaEchart } from './TrendChinaEchart'
+import { getLinerTrendChinaEchart } from './LinerTrendChinaEchart'
+
 // import hubei from '../../mock/provinceData/湖南省';
-// import china from '../../mock/worldData/中国'
-import china from '../../mock/china/湖北省'
-
-
-// import { Select } from 'antd';
-// import 'antd/dist/antd.css';
-// const { Option } = Select;
+import china from '../../mock/china/china'
+// import china from '../../mock/china/湖北省'
 
 
 
-
-const TrendChina = (props) => {
-  const chinaMockData = china.data
+function TrendChina(props) {
   const { chinaData } = props
+
   const [dataType, setDataType] = useState('currentConfirmedCount');
+  const [provincename, setProvincename] = useState('china')
+
+  // let chinaprovinceStr = '../../mock/china/' + provincename;
+  // eslint-disable-next-line no-useless-concat
+  // const china = require('../../mock/china/' + 'china');
+  // const china = require(chinaprovinceStr);
+  const chinaMockData = china.data
 
   const selectRef = useRef(null);
 
   const getSelectDOM = () => {
-    // let typeSelect = document.querySelector("#dataType_hsq")
     let typeSelect = document.getElementById("dataType_hsq")
-    // let typeSelect = ReactDOM.findDOMNode(select)
-    // const typeSelect = selectRef.current;
-    //  console.log('typeSelect<<',typeSelect)
     const selectIdx = typeSelect.selectedIndex;
     //  console.log('selectIdx<<', selectIdx)
     const typeValue = typeSelect.options[selectIdx].value; // 数据类型
@@ -35,34 +35,57 @@ const TrendChina = (props) => {
     setDataType(typeValue)
     return typeValue;
   }
+  const getProvinces = () => {
+    let typeSelect = document.getElementById("provinceSelect")
+    const typeValue = typeSelect.options[typeSelect.selectedIndex].value; 
+    setProvincename(typeValue)
+    return typeValue;
+  }
 
   useEffect(() => {
     getSelectDOM()
+    getProvinces()
     // const typeValue = getSelectDOM()
     // setDataType(typeValue)
     //  console.log('useEffect/dataType<<',typeValue)
-    getTrendChinaEchart(chinaMockData
-      , dataType
-    )
+    getTrendChinaEchart(chinaMockData, dataType);
+    // getLinerTrendChinaEchart();
   }, [chinaData, chinaMockData, dataType])
 
+
+  const optionsNodes = provincesName.map(item => {
+    return (
+      <option key={item} value={item}>{item}</option>
+    )
+  })
   return (
     <div className='tendency_china' >
       <div className="settings">
+      <div className="dataSel_box">
+          <select id="provinceSelect" onChange={() => getProvinces()}>
+            <option value={china}>选择省份/中国</option>
+            {optionsNodes}
+          </select>
+        </div>
         <div className="dataSelect">
           {/* <label htmlFor="dataType_hsq" styles={{ fontSize:'1.5rem',color:'green'}}></label> */}
           <select ref={selectRef} id="dataType_hsq"
             onChange={() => getSelectDOM()}
           >
-            <option value="currentConfirmedCount">请选择数据</option>
-            <option value="confirmedCount">总确诊人数</option>
-            <option value="curedCount">总治愈人数</option>
-            <option value="currentConfirmedCount">当前确诊人数</option>
+            <option value="currentConfirmedCount">选择数据</option>
+            <option value="confirmedCount">累计确诊</option>
+            <option value="curedCount">治愈人数</option>
+            <option value="currentConfirmedCount">现有确诊</option>
             <option value="deadCount">死亡人数</option>
           </select>
         </div>
       </div>
-      <div id='china_dataShow' > </div>
+      <div id='china_dataShow' >
+        <header>china_dataShow</header>
+      </div>
+      <div id='LinerTrendChinaEchart' >
+        <header>LinerTrendChinaEchart</header>
+      </div>
     </div>
   )
 }

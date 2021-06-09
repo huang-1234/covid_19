@@ -1,7 +1,10 @@
 .tendency_china {
   width: 880px;
-  height: 880px;
+  height: 1880px;
 }
 .tendency_china #china_dataShow {
-  height: 100%;
+  height: 50%;
+}
+.tendency_china #LinerTrendChinaEchart {
+  height: 50%;
 }

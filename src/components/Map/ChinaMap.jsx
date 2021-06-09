@@ -9,7 +9,7 @@ import '../../utils/china.js'
 const ChinaMap = (props) => {
   const { chinaData } = props
   const [number, setNumber] = useState(0);
-  //  console.log('chinaData<<', chinaData);
+   console.log('chinaData<<', chinaData);
 
   useEffect(() => {
     // ChinaMapEchart(chinaData)
@@ -63,7 +63,7 @@ const ChinaMap = (props) => {
         trigger: 'item',
         // triggerOn: "mousemove",
         formatter: function (params) {
-          return params.name + ' ave ' + (params.value ? params.value + ' person': 0)
+          return params.name + ' 有 ' + (params.value ? params.value + ' 人': 0 +'人')
         },
       },
       visualMap: {

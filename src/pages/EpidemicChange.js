@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { EpidemicChangeEchart } from "./EpidemicChangeEchart.js";
+import {provincesName} from '../mock/provincesName'
 import "../styles/pages/EpidemicChange.less";
+import jsonData from  '../mock/china/ProvincesMonthData.json'
 
 export default function EpidemicChange() {
+  const [province, setProvince] = useState(null)
   const [dataSel, setDataSel] = useState(null);
-  const [race, setRace] = useState(50000);
+  const [race, setRace] = useState(50000);  // 默认为50秒
+  const [provinceCount, setProvinceCount] = useState(10)
 
   useEffect(() => {
+    getProvinces();
     getSelectData();
     getRace();
-    EpidemicChangeEchart(dataSel, race);
-  }, [dataSel, race]);
+    getProvinceCount()
+    EpidemicChangeEchart(province,dataSel, race,provinceCount,jsonData.data);
+  }, [province, dataSel, race, provinceCount]);
 
+
+  const getProvinces = () => {
+    let typeSelect = document.getElementById("provinceSelect");
+    const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
+    //  console.log('getProvinces/typeValue<<', typeValue);
+    setProvince(typeValue);
+    return typeValue;
+  };
   const getSelectData = () => {
     let typeSelect = document.getElementById("dataSelect");
     const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
@@ -24,10 +38,25 @@ export default function EpidemicChange() {
     let typeSelect = document.getElementById("raceSelect");
     //  console.log('typeSelect<<',typeSelect)
     const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
-    console.log("getSelectData/typeValue<<", typeValue);
+    //  console.log("getRace/typeValue<<", typeValue);
     setRace(typeValue);
     return typeValue;
   };
+  const getProvinceCount = () => {
+    let typeSelect = document.getElementById("provinceCountSelect");
+    //  console.log('typeSelect<<',typeSelect)
+    const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
+     console.log("getProvinceCount/typeValue<<", typeValue);
+    setProvinceCount(typeValue);
+    return typeValue;
+  };
+
+
+  const optionsNodes = provincesName.map(item => {
+    return (
+      <option key={item} value={item}>{item}</option>
+    )
+  })
 
   return (
     <>
@@ -35,22 +64,19 @@ export default function EpidemicChange() {
       <div className="settings">
         setting
         <div className="dataSel_box">
-          <select id="raceSelect" onChange={() => getRace()}>
-            <option value={5000}>选择省份</option>
-            <option value={2500}>2倍数</option>
-            <option value={1500}>3倍数</option>
-            <option value={1000}>4倍数</option>
-            <option value={500}>5倍数</option>
+          <select id="provinceSelect" onChange={() => getProvinces()}>
+            <option value={'china'}>选择省份</option>
+            {optionsNodes}
           </select>
         </div>
         <div className="dataSel_box">
           {/* <label htmlFor="dataSelect">数据选择</label>  */}
           <select id="dataSelect" onChange={() => getSelectData()}>
-            <option value="0">请选择数据</option>
-            <option value="0">总确诊人数</option>
-            <option value="1">当前确诊人数</option>
+            <option value="0">选择数据</option>
+            <option value="0">累计确诊</option>
+            <option value="1">现有确诊</option>
             <option value="2">死亡人数</option>
-            <option value="3">总治愈人数</option>
+            <option value="3">治愈人数</option>
           </select>
         </div>
         <div className="dataSel_box">
@@ -60,6 +86,14 @@ export default function EpidemicChange() {
             <option value={1500}>3倍数</option>
             <option value={1000}>4倍数</option>
             <option value={500}>5倍数</option>
+          </select>
+        </div>
+
+        <div className="dataSel_box">
+          <select id="provinceCountSelect" onChange={() => getProvinceCount()}>
+            <option value={10}>省份个数/10</option>
+            <option value={34}>全部</option>
+            <option value={10}>10</option>
           </select>
         </div>
       </div>
