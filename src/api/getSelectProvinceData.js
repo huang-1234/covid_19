@@ -44,6 +44,19 @@ import data33 from "../mock/china/台湾"
   
 // }
 
+/* 可见switch-case的效率略高于if-elseif结构，通过查阅资料得到下面一些结果。
+switch-case与if-elseif的根本区别在于汇编时，switch-case会生成一个跳转表来指示实际的case分支的地址，
+而这个跳转表的索引号与switch变量的值是相等的。从而，switch-case不用像if-elseif那样遍历条件分支直到命中条件
+，而只需访问对应索引号的表项从而到达定位分支的目的。
+具体地说，switch-case会生成一份表项数为case量＋1的跳表，程序首先判断switch变量是否大于（小于）最大（最小）
+case 常量，若大于（小于），则跳到default分支处理；否则取得索引号为switch变量大小的跳表项的地址（即跳表的起始地址＋表项大小＊索引号）
+，程序接着跳到此地址执行，到此完成了分支的跳转。
+
+由此看来，switch-case结构有一点以空间换时间的意思，当分支较多的时候明显switch-case结构的实行效率会高很多。
+但是switch-case的缺点是只能处理常量的匹配，在仅有常量选择分支的时候，可以选用switch-case结构，
+而此时通过遍历数组比较更是不可取的一种方式，但是if-elseif可以应用于更多的场合（如a > 10 && a < 20），显得更为灵活。
+ */
+
 
 export const getSelectProvinceData = (provincename) => {
   let chinaMockData

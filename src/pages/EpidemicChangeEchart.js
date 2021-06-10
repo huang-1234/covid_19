@@ -66,7 +66,7 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
         months.push(data[i][dataMonthidx]);
       }
     }
-    //  console.log('months<<',months)
+     console.log('months<<',months)
 
     function getFlag(provinceName) {
       if (!provinceName) {

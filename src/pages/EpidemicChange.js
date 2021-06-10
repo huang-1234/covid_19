@@ -16,7 +16,7 @@ export default function EpidemicChange() {
     getRace();
     getProvinceCount()
     EpidemicChangeEchart(dataSel, race,provinceCount,jsonData.data);
-  }, [dataSel, race, provinceCount]);
+  }, [settingIsShow,dataSel, race, provinceCount]);
 
 
   const getSelectData = () => {
@@ -53,11 +53,11 @@ export default function EpidemicChange() {
         <div className="dataSel_box">
           {/* <label htmlFor="dataSelect">数据选择</label>  */}
           <select id="dataSelect" onChange={() => getSelectData()}>
-            <option value="0">选择数据</option>
-            <option value="0">累计确诊</option>
-            <option value="1">现有确诊</option>
-            <option value="2">死亡人数</option>
-            <option value="3">治愈人数</option>
+            <option value={0}>选择数据</option>
+            <option value={0}>累计确诊</option>
+            <option value={1}>现有确诊</option>
+            <option value={2}>死亡人数</option>
+            <option value={3}>治愈人数</option>
           </select>
         </div>
         <div className="dataSel_box">
