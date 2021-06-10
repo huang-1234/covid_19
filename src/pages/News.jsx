@@ -10,10 +10,10 @@ export default function News(props) {
   useEffect( async function () {
     axios.get('/covid/news')
       .then((response) => {
-         console.log('News/response.data<<', response.data)
+        //  console.log('News/response.data<<', response.data)
         const results = response.data.results;
         setNewslist(results);
-         console.log('News<<',newslist)
+        //  console.log('News<<',newslist)
       })
       .catch ((err) => {
         console.log('newslist 获取失败',err)

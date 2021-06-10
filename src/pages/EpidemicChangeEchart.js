@@ -3,7 +3,7 @@
 import * as echarts from 'echarts';
 import $ from 'jquery';
 
-import {getAllMouthDate} from '../api/axiosMonth';
+// import {getAllMouthDate} from '../api/axiosMonth';
 import { chinaProvinceColor } from '../mock/provinceColor';
 // import {countryColors} from '../mock/countryColors';
 
@@ -66,8 +66,9 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
         months.push(data[i][dataMonthidx]);
       }
     }
-     console.log('months<<',months)
-
+    console.log('months<<', months)
+    
+    /* 
     function getFlag(provinceName) {
       if (!provinceName) {
         return 'none name';
@@ -79,6 +80,8 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
         }
       }
     }
+     */
+
     // 开始月份0代表第一个月份数据
     let startIndex = 1;
     let startMonth = months[startIndex];

@@ -1,9 +1,10 @@
 .news_box {
-  width: 70vw;
+  width: 60vw;
   margin: 1rem auto;
+  background-color: aqua;
 }
 .news_box header .news_time {
-  font-size: 1rem;
+  font-size: 2rem;
 }
 .news_box .news_header {
   font-size: 1.5rem;

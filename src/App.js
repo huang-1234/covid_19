@@ -11,6 +11,8 @@ import EpidemicChange from './pages/EpidemicChange';
 import TopTen from './pages/TopTen'
 import styles from './App.less';
 
+import SwiperNewList from './components/UI/Swiper/SwiperNews'
+
 const App = (props) => {
   
   const [foreignData, setForeignData] = useState(null)
@@ -30,7 +32,7 @@ const App = (props) => {
 
   return (
     <div className="container">
-      
+      <SwiperNewList></SwiperNewList>
       <PageChinaMap className={styles.page_china_map} foreignData={foreignData} chinaData={chinaData} />
 
       
