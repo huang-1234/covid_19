@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowNewsList from '../components/News/NewsList'
-import jsonData from '../mock/news/newslist.json';
+// import jsonData from '../mock/news/newslist.json';
 export default function News(props) {
 
   const [newslist, setNewslist] = useState();

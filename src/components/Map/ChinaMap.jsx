@@ -9,7 +9,7 @@ import '../../utils/china.js'
 const ChinaMap = (props) => {
   const { chinaData } = props
   const [number, setNumber] = useState(0);
-   console.log('chinaData<<', chinaData);
+  //  console.log('chinaData<<', chinaData);
 
   useEffect(() => {
     // ChinaMapEchart(chinaData)

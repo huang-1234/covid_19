@@ -30,11 +30,9 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
     // console.log('res0Length<<',res1[0].length)
     // console.log('res0Length<<',res2[0].length)
     // let flags = res0[0];
-    let flags = chinaProvinceColor;
     
     // let data1 =  await getAllMouthDate() 
 
-    // let data;
 /*     
     async function getAllProvinceData() {
       return await getAllMouthDate()
@@ -67,20 +65,6 @@ export const EpidemicChangeEchart = (dataSel,race,provinceCount,data) => {
       }
     }
     console.log('months<<', months)
-    
-    /* 
-    function getFlag(provinceName) {
-      if (!provinceName) {
-        return 'none name';
-      }
-      
-      for (let index in flags) {
-        if (provinceName.toString() === index.toString()) {
-          return flags[index];
-        }
-      }
-    }
-     */
 
     // 开始月份0代表第一个月份数据
     let startIndex = 1;

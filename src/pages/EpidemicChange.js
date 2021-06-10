@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { EpidemicChangeEchart } from "./EpidemicChangeEchart.js";
-import {provincesName} from '../mock/provincesName'
+// import {provincesName} from '../mock/provincesName'
 import "../styles/pages/EpidemicChange.less";
 import jsonData from  '../mock/china/ProvincesMonthData.json'
 
 export default function EpidemicChange() {
 
-  const [settingIsShow, setSettingIsShow] = useState(null)  // 设置按钮隐藏和显示
+  // const [settingIsShow, setSettingIsShow] = useState(null)  // 设置按钮隐藏和显示
   const [dataSel, setDataSel] = useState(null);  // 选择的数据的类型
   const [race, setRace] = useState(50000);  // 默认为50秒
   const [provinceCount, setProvinceCount] = useState(10)
@@ -16,7 +16,7 @@ export default function EpidemicChange() {
     getRace();
     getProvinceCount()
     EpidemicChangeEchart(dataSel, race,provinceCount,jsonData.data);
-  }, [settingIsShow,dataSel, race, provinceCount]);
+  }, [dataSel, race, provinceCount]);
 
 
   const getSelectData = () => {

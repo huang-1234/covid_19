@@ -46,7 +46,7 @@ export default function SwiperNews() {
         </div>
         <header key={item.pubDate + mathRandom} className="news_header">
           {/* <span>{item.infoSource}</span> */}
-          <span>央视新闻林科大客户端 --</span>
+          <span>央视新闻林科大实时客户端 --</span>
           <span key={item.formateTime +mathRandom} className="news_time"> 时间：{ formateTime} </span>
         </header>
         <div className="new_main">
@@ -74,7 +74,7 @@ export default function SwiperNews() {
           "clickable": true
         }} navigation={true}
       >
-        {newslistNodes}
+        {/* {newslistNodes} */}
       </Swiper>
       <Swiper effect={'coverflow'} grabCursor={true} centeredSlides={true} slidesPerView={'auto'} coverflowEffect={{
         "rotate": 50,

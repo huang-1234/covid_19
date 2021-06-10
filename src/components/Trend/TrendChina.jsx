@@ -4,11 +4,11 @@ import './TrendChina.less'
 import {provincesName} from '../../mock/provincesName'
 
 import { getTrendChinaEchart } from './TrendChinaEchart'
-import { getLinerTrendChinaEchart } from './LinerTrendChinaEchart'
+// import { getLinerTrendChinaEchart } from './LinerTrendChinaEchart'
 
 
 
-import { getProvincesData } from '../../api/getSelectProvinceData'
+// import { getProvincesData } from '../../api/getSelectProvinceData'
 
 import {getSelectProvinceData} from '../../api/getSelectProvinceData'
 
@@ -49,7 +49,7 @@ function TrendChina(props) {
     let typeSelect = document.getElementById("provinceSelect")
     const typeValue = typeSelect.options[typeSelect.selectedIndex].value;
     console.log('Object.prototype.toString.call(typeValue)<<', Object.prototype.toString.call(typeValue));
-    console.log("typeValue<<",typeValue.toString());
+    // console.log("typeValue<<",typeValue.toString());
     setProvincename(typeValue)
     return typeValue;
   }
