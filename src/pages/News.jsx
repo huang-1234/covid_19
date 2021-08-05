@@ -4,24 +4,19 @@ import ShowNewsList from '../components/News/NewsList'
 // import jsonData from '../mock/news/newslist.json';
 export default function News(props) {
 
-  const [newslist, setNewslist] = useState();
-  
+  const [newslist, setNewslist] = useState(null);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect( async function () {
     axios.get('/covid/news')
       .then((response) => {
-        //  console.log('News/response.data<<', response.data)
         const results = response.data.results;
         setNewslist(results);
-        //  console.log('News<<',newslist)
       })
       .catch ((err) => {
         console.log('newslist 获取失败',err)
       })
-    // const results = jsonData.results;
-    // setNewslist(results);
   },[newslist])
-  //  console.log('News<<',newslist)
 
   return (
     <>

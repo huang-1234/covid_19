@@ -69,6 +69,7 @@
     "terser-webpack-plugin": "4.2.3",
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.0",
@@ -76,6 +77,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
+    "deploy": "bash deploy.sh",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"

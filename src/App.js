@@ -32,7 +32,7 @@ const App = (props) => {
 
   return (
     <div className="container">
-      <SwiperNewList></SwiperNewList>
+      <SwiperNewList className={styles.swiperNewList }/>
       <PageChinaMap className={styles.page_china_map} foreignData={foreignData} chinaData={chinaData} />
 
       
